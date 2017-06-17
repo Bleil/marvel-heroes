@@ -1,0 +1,22 @@
+<button type="button" class="close-button" ng-click="closeDialog()">&#215;</button>
+<div class="thumbnail" ng-style="{ 'background-image': 'url(' + selectedHero.thumbnail.path + '/portrait_uncanny.' + selectedHero.thumbnail.extension + ')' }"></div>
+<div class="infos" id="dialog-infos-container">
+    <h1>{{ selectedHero.name }}</h1>
+    <p>{{ selectedHero.description ? selectedHero.description : 'No description provided... ' }}</p>
+    <p class="marvel-disclaimer">Data provided by Marvel. © 2017 Marvel</p>
+    <h4>Appears on ({{ selectedHero.comics.available }}):</h4>
+    <ul ng-if="selectedHero.comics.available > 0" infinite-scroll="fetchMore()" infinite-scroll-disabled="busy || allResultsFetched" infinite-scroll-container="'#dialog-infos-container'">
+        <li ng-repeat="comic in comics">
+            <img src="{{ comic.thumbnail.path + '/portrait_small.' + comic.thumbnail.extension }}" alt="{{ comic.title }}">
+            <p>{{ comic.title }}</p>
+        </li>
+    </ul>
+    <div class="fetching-comics" ng-if="busy && !allResultsFetched">
+        <img src="../assets/img/loading.gif" alt="Fetching comics">
+        <span ng-if="busy && (!comics || comics.length <= 0)">Fetching comics...</span>
+        <span ng-if="busy && (comics && comics.length > 0)">Fetching more comics...</span>
+    </div>
+    <div class="fetching-comics" ng-if="selectedHero.comics.available <= 0">
+        <span>No comics found for this hero</span>
+    </div>
+</div>

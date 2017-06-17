@@ -1,0 +1,128 @@
+hero-dialog {
+    width: 678px;
+    height: 450px;
+    background-color: #FFFFFF;
+    color: #212121;
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: flex;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+hero-dialog .close-button {
+    position: absolute;
+    top: 4px;
+    right: 14px;
+    font-size: 36px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #212121;
+    outline: none;
+}
+
+hero-dialog .thumbnail {
+    width: 300px;
+    height: 100%;
+    border-right: 1px solid #E3E3E3;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+hero-dialog .infos {
+    width: 378px;
+    height: 100%;
+    padding: 24px;
+    box-sizing: border-box; 
+    overflow-x: hidden;
+    overflow-y: auto;   
+}
+
+hero-dialog .infos p.marvel-disclaimer {
+    font-size: 12px;
+}
+
+hero-dialog .infos ul {
+    list-style: none;
+    padding: 0;
+}
+
+hero-dialog .infos ul li {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+hero-dialog .infos ul li img {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+}
+
+hero-dialog .infos ul li p {
+    padding: 0;
+    margin-left: 8px;
+    color: #212121;
+}
+
+hero-dialog .infos h1,
+hero-dialog .infos h4 {
+    color: #212121;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+hero-dialog .fetching-comics {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+hero-dialog .fetching-comics img {
+    width: 35px;
+    height: 35px;
+}
+
+hero-dialog .fetching-comics span {
+    margin-left: 8px;
+    color: #808080;
+}
+
+@media screen and (max-width: 678px) {
+    hero-dialog {
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    hero-dialog .thumbnail {
+        width: 200px;
+        height: 320px;
+        margin-top: 16px;
+        border-radius: 50%;
+        border: 1px solid #E3E3E3;
+    }
+
+    hero-dialog .infos {
+        width: 100%;
+        margin-top: 8px;
+        box-sizing: border-box;
+    }
+
+    hero-dialog .infos p,
+    hero-dialog .infos h1,
+    hero-dialog .infos h4 {
+        text-align: center;
+    }
+}

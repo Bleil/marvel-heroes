@@ -1,0 +1,235 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+body.scroll-disabled {
+    overflow: hidden;
+}
+
+header {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header figure,
+.hero figure,
+.floating-header figure {
+    padding: 0;
+    margin: 0;
+}
+
+header figure img {
+    width: 150px;
+}
+
+header input,
+.floating-header input {
+    width: 200px;
+    font-size: 16px;
+    font-family: Roboto;
+    font-weight: 300;
+    outline: none;
+    padding: 5px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    margin: 6px;
+}
+
+.floating-header {
+    width: 100%;
+    height: 64px;
+    padding: 0 16px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E3E3E3;
+    box-sizing: border-box;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s linear;
+    z-index: 888;
+}
+
+.floating-header.hidden {
+    display: none;
+}
+
+.floating-header figure {
+    position: absolute;
+    left: 8px;
+}
+
+.floating-header figure img {
+    max-height: 40px; 
+}
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 263px);
+    background-color: #FAFAFA;
+    border-top: 1px solid #E3E3E3;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.heroes {
+    width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.heroes .hero {    
+    width: 168px;
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    border-radius: 3px;
+    margin: 10px;
+    transition: all 0.15s linear;
+}
+
+.heroes .hero:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    transition: all 0.25s linear;
+}
+
+.heroes .hero:hover p {
+    transition: all 0.15s linear;
+    font-weight: 500;
+}
+
+.heroes .hero figure img {
+    width: 100%;
+    height: 252px;
+    object-fit: cover;
+    display: block;
+}
+
+.heroes .hero p {
+    margin: 0;
+    padding: 16px 8px;
+    text-align: center;
+    border-top: 1px solid #E3E3E3;
+    transition: all 0.15s linear;
+}
+
+.fetching-heroes {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.fetching-heroes img {
+    width: 35px;
+    height: 35px;
+}
+
+.fetching-heroes span {
+    margin-left: 8px;
+    color: #808080;
+}
+
+footer {
+    width: 100%;
+    padding: 20px 16px;
+    box-sizing: border-box;
+}
+
+footer p {
+    text-align: center;
+}
+
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .heroes {
+        width: 100%;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 735px) {
+    .floating-header {
+        justify-content: flex-start;
+        transition: all 0.15s linear;
+    }
+
+    .floating-header figure {
+        position: relative;
+        margin-right: 16px;
+    }
+}
+
+@media screen and (max-width: 678px) {
+    .heroes {
+        padding: 0;
+        flex-direction: column;
+    }
+
+    .heroes .hero {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 8px;
+        box-sizing: border-box;
+        border-right: none;
+        border-left: none;
+        border-bottom: none;        
+        border-top: 1px solid #E3E3E3;
+    }
+
+    .heroes .hero:hover {
+        cursor: pointer;
+        -webkit-box-shadow: 0;
+        -moz-box-shadow: 0;
+        box-shadow: 0;
+        transition: all 0.25s linear;
+    }
+
+    .heroes .hero:first-child {
+        border-top: none;
+    }
+
+    .heroes .hero figure {
+        margin: 0 8px 0 0;
+    }
+
+    .heroes .hero figure img {
+        width: 40px;
+        height: 40px;
+        border-radius: 3px;
+    }
+
+    .heroes .hero p {
+        border: none;
+        text-align: left;
+    }
+}

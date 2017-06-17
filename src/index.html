@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>Marvel Heroes</title>
+    <meta name="description" content="Marvel Heroes detailed">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+</head>
+
+<body ng-app="heroesApp" ng-controller="HeroesController" ng-class="{ 'scroll-disabled': HeroesService.selectedHero }">
+    <header>
+        <figure>
+            <img src="assets/img/marvel-logo.gif" alt="Marvel Heroes">
+        </figure>
+        <input type="text" ng-model="searchHero" ng-model-options="{ debounce: 450 }" name="searchHeroes" placeholder="Search..."
+            ng-change="searchHeroes()">
+    </header>
+    <div class="floating-header" ng-class="{ 'hidden': pixelsScrolled <= 120 }" >
+        <figure>
+            <img src="assets/img/marvel-logo.gif" alt="Marvel Heroes">
+        </figure>
+        <input type="text" ng-model="searchHero" ng-model-options="{ debounce: 450 }" name="floatingSearchHeroes" placeholder="Search..."
+            ng-change="searchHeroes()">
+    </div>
+    <main>
+        <section class="heroes" infinite-scroll="fetchMore()" infinite-scroll-disabled="(busy || searching) || allResultsFetched">
+            <div class="hero animated fadeInUp" ng-repeat="hero in heroes" ng-click="heroClick(hero)">
+                <figure>
+                    <img src="{{ hero.thumbnail.path + '/portrait_fantastic.' + hero.thumbnail.extension }}" alt="{{ hero.name }}">
+                </figure>
+                <p>{{ hero.name }}</p>
+            </div>
+            <div class="fetching-heroes" ng-if="(busy || searching) && !allResultsFetched">
+                <img src="assets/img/loading.gif" alt="Fetching heroes">
+                <span ng-if="((busy && !searching) || (busy && searching && !searchHero)) && (!heroes || heroes.length <= 0)">
+                    Fetching heroes...
+                </span>
+                <span ng-if="((busy && !searching) || (busy && searching && !searchHero)) && (heroes && heroes.length > 0)">
+                    Fetching more heroes...
+                </span>
+                <span ng-if="busy && searching && searchHero">Searching for "{{ searchHero }}"...</span>
+            </div>
+            <div class="fetching-heroes" ng-if="(!busy && !searching && (!heroes || heroes.length <= 0)) && !allResultsFetched">
+                <span ng-if="!searchHero">Sorry we didn't find any hero...</span>
+                <span ng-if="searchHero">Sorry we didn't find any hero that starts with "{{ searchHero }}"...</span>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Data provided by Marvel. © 2017 Marvel</p>
+    </footer>
+    <div ng-if="HeroesService.selectedHero" ng-click="closeDialog()" class="backdrop animated fadeIn"></div>
+    <hero-dialog ng-if="HeroesService.selectedHero" class="animated zoomIn"></hero-dialog>
+    <script src="vendor.js"></script>
+    <script src="bundle.js"></script>
+</body>
+
+</html>
