@@ -9,7 +9,7 @@
   "author": "Arthur Bleil",
   "license": "ISC",
   "devDependencies": {
-    "angular": "1.6.4",
+    "angular": "1.7.9",
     "angular-md5": "^0.1.10",
     "browser-sync": "2.18.12",
     "gulp": "3.9.1",
